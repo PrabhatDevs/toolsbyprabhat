@@ -28,6 +28,8 @@ import {
     
 } from './modules/score-engine';
  
+import { setPaymentEngine, showSuccess } from './payment';
+
 
 window.submitForm = submitForm;
 window.changeTab = changeTab;
@@ -49,14 +51,14 @@ window.openResultRoute = openResultRoute;
 window.updateScoreUI = updateScoreUI;
 window.removeCheckMark = removeCheckMark;
 window.toggleGoalStatus = toggleGoalStatus;
+window.showSuccess = showSuccess;
 
-// import './modules/expand-summary';
 document.addEventListener('DOMContentLoaded', () => {
     initUiController();
     initSkillEngine();
     submitForm();
     initScoreEngine();
-   
+    setPaymentEngine();
 
 
     document.addEventListener('input', (e) => {
@@ -66,3 +68,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     // updateTabUI();
 });
+
+
+// import './modules/expand-summary';

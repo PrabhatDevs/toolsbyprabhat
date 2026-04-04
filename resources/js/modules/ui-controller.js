@@ -601,62 +601,63 @@ export function openResultRoute(data) {
 export function submitForm() {
     // submitting form and generating preview logic will come here
     let resumeForm = document.getElementById('resumeForm');
+    if (resumeForm) {
+        resumeForm.addEventListener('submit', async function (e) {
 
-    resumeForm.addEventListener('submit', async function (e) {
+            e.preventDefault();
 
-        e.preventDefault();
+            const previewContainer = document.getElementById('livePreviewContainer');
+            const btn = document.getElementById('generateBtn');
+            const btnText = document.getElementById('btnText');
+            const btnLoader = document.getElementById('btnLoader');
 
-        const previewContainer = document.getElementById('livePreviewContainer');
-        const btn = document.getElementById('generateBtn');
-        const btnText = document.getElementById('btnText');
-        const btnLoader = document.getElementById('btnLoader');
+            let formData = new FormData(resumeForm);
 
-        let formData = new FormData(resumeForm);
+            try {
 
-        try {
+                // 🔥 Disable button + show spinner
+                btn.disabled = true;
+                btnText.classList.add('d-none');
+                btnLoader.classList.remove('d-none');
 
-            // 🔥 Disable button + show spinner
-            btn.disabled = true;
-            btnText.classList.add('d-none');
-            btnLoader.classList.remove('d-none');
+                // 🔥 Show right side loader
 
-            // 🔥 Show right side loader
+                const response = await fetch("/resume-builder", {
+                    method: 'POST',
+                    credentials: 'same-origin',
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                    },
+                    body: formData
+                });
 
-            const response = await fetch("/resume-builder", {
-                method: 'POST',
-                credentials: 'same-origin',
-                headers: {
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
-                },
-                body: formData
-            });
-
-            const data = await response.json();
-            if (!data.success) {
-                showToast('error', data.message);
+                const data = await response.json();
+                if (!data.success) {
+                    showToast('error', data.message);
                 // 🔥 Disable button + show spinner
                 // 🔥 Show right side loader
 
-                return;
-            } else {
-                if (data.used_credits) {
-                  const  credits = document.querySelectorAll('.credits_count');
-                    credits.forEach(e => {
-                        e.innerText = data.used_credits;
-                    });
+                    return;
+                } else {
+                    if (data.used_credits) {
+                        const credits = document.querySelectorAll('.credits_count');
+                        credits.forEach(e => {
+                            e.innerText = data.used_credits;
+                        });
+                    }
+                    openResultRoute(data.html);
                 }
-                openResultRoute(data.html);
+
+            } catch (error) {
+                showToast('error', 'Failed to generate resume. Please try again.');
+            } finally {
+
+                // 🔥 Restore button
+                btn.disabled = false;
+                btnText.classList.remove('d-none');
+                btnLoader.classList.add('d-none');
             }
 
-        } catch (error) {
-            showToast('error', 'Failed to generate resume. Please try again.');
-        } finally {
-
-            // 🔥 Restore button
-            btn.disabled = false;
-            btnText.classList.remove('d-none');
-            btnLoader.classList.add('d-none');
-        }
-
-    });
+        });
+    }
 }

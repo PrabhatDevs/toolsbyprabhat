@@ -522,15 +522,7 @@
         </div> --}}
         </div>
     </footer>
-    @vite([
-        'resources/js/payment.js',
-         'resources/js/app.js',
-        //  'resources/js/modules/ats-scanner.js',
-        //  'resources/js/modules/expand-summary.js',
-        //  'resources/js/modules/score-engine.js',
-        //  'resources/js/modules/skill-engine.js',
-        //  'resources/js/modules/ui-controller.js',
-         ])
+  
 
     @if ($errors->any())
  
@@ -550,7 +542,15 @@
 
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
+  @vite([
+        // 'resources/js/payment.js',
+         'resources/js/app.js',
+        //  'resources/js/modules/ats-scanner.js',
+        //  'resources/js/modules/expand-summary.js',
+        //  'resources/js/modules/score-engine.js',
+        //  'resources/js/modules/skill-engine.js',
+        //  'resources/js/modules/ui-controller.js',
+         ])
 
 </body>
 

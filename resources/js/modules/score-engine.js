@@ -1,22 +1,23 @@
 export function updateScoreColor(score) {
     const circle = document.querySelector('.score-circle');
+    if (circle) {
+        // Remove all potential color classes
+        circle.classList.remove('score-red', 'score-orange', 'score-purple', 'score-green');
 
-    // Remove all potential color classes
-    circle.classList.remove('score-red', 'score-orange', 'score-purple', 'score-green');
+        // Add the correct class based on the point thresholds
+        if (score <= 25) {
+            circle.classList.add('score-red');
+        } else if (score <= 50) {
+            circle.classList.add('score-orange');
+        } else if (score <= 80) {
+            circle.classList.add('score-purple');
+        } else {
+            circle.classList.add('score-green');
+        }
 
-    // Add the correct class based on the point thresholds
-    if (score <= 25) {
-        circle.classList.add('score-red');
-    } else if (score <= 50) {
-        circle.classList.add('score-orange');
-    } else if (score <= 80) {
-        circle.classList.add('score-purple');
-    } else {
-        circle.classList.add('score-green');
+        // Update the number inside
+        document.getElementById('resumeScore').innerText = score;
     }
-
-    // Update the number inside
-    document.getElementById('resumeScore').innerText = score;
 }
 
 // Example usage:

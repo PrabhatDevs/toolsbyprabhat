@@ -163,7 +163,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 
 
-Route::post('auth-check', [AuthController::class, 'auth_check'])->name('auth-check');
+Route::post('/auth-check', [AuthController::class, 'auth_check'])->name('auth-check');
 
 Route::middleware(['json_auth'])->group(function () {
     Route::post('/resume-builder', [ResumeController::class, 'generate'])->name('resume.builder.submit');

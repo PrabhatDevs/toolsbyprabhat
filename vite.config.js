@@ -10,6 +10,7 @@ export default defineConfig({
                 'resources/js/script.js',
                 'resources/js/payment.js',
                 'resources/css/builder.css',
+                'resources/css/layout-app.css',
             ],
             refresh: true,
         }),
