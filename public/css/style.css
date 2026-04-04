@@ -1,0 +1,805 @@
+#toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+}
+
+.toast {
+    min-width: 260px;
+    margin-bottom: 14px;
+    padding: 14px 18px;
+    border-radius: 12px;
+
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+
+    color: #fff;
+    font-weight: 500;
+
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+        opacity 0.4s ease,
+        transform 0.4s ease;
+}
+
+/* ENTRY */
+.toast.show {
+    animation:
+        fadeInToast 0.4s forwards,
+        floatToast 3s ease-in-out infinite;
+    transform: translateY(0);
+}
+
+/* EXIT */
+.toast.hide {
+    transform: translateY(-10px);
+    transition:
+        opacity 0.4s ease,
+        transform 0.4s ease;
+    animation: fadeoutToast 0.4s forwards;
+}
+
+/* Toast Fadein */
+@keyframes fadeInToast {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeoutToast {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+}
+
+/* FLOATING ANIMATION */
+@keyframes floatToast {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* SUCCESS */
+.toast.success {
+    color: var(--neon-blue);
+    border-left: 4px solid var(--neon-blue);
+    box-shadow: 0 0 15px var(--neon-blue);
+}
+
+/* ERROR */
+.toast.error {
+    color: #ff0000;
+    border-left: 4px solid red;
+    box-shadow: 0 0 15px red;
+}
+
+.pricing-box {
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    transition: 0.3s ease;
+}
+
+.pricing-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
+}
+
+.country-toggle {
+    display: flex;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 30px;
+    padding: 4px;
+    gap: 5px;
+}
+
+.toggle-btn {
+    border: none;
+    background: transparent;
+    padding: 6px 18px;
+    border-radius: 25px;
+    color: #aaa;
+    transition: 0.3s ease;
+    font-weight: 500;
+}
+
+.toggle-btn.active {
+    background: linear-gradient(45deg, #00f2fe, #7000ff);
+    color: #fff;
+    box-shadow: 0 0 10px rgba(0, 242, 254, 0.6);
+}
+
+:root {
+    --bg-dark: #030712;
+    --neon-blue: #00f2fe;
+    --neon-purple: #7000ff;
+    --cyber-cyan: #00f5ff;
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(0, 255, 255, 0.15);
+    --warning: rgba(255, 193, 7, 1);
+}
+
+body {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    background-color: var(--bg-dark);
+    color: #e2e8f0;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+.code-font {
+    font-family: "Fira Code", monospace;
+}
+
+/* Neon Background Blobs */
+/* .neon-blob {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+            filter: blur(120px);
+            opacity: 0.15;
+            z-index: -1;
+            border-radius: 50%;
+            overflow: hidden;
+        } */
+.neon-blob {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    right: -5%;
+}
+
+.neon-bg-wrapper {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.neon-blob {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    filter: blur(120px);
+    opacity: 0.15;
+    border-radius: 50%;
+}
+.bg-dark {
+    background-color: rgb(19 22 25) !important;
+}
+.blob-right {
+    top: 10%;
+    right: -50px;
+    background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+}
+
+.blob-left {
+    bottom: 10%;
+    left: -150px;
+    background: var(--neon-purple);
+}
+
+/* Typography */
+.gradient-text {
+    background: linear-gradient(
+        45deg,
+        var(--neon-blue),
+        #4facfe,
+        var(--neon-purple)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+}
+
+/* Navbar - Glassmorphism */
+.navbar {
+    /* background: rgba(3, 7, 18, 0.8) !important; */
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--glass-border);
+    transition: all 0.4s ease;
+    position: relative;
+}
+
+.cyber-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 255, 255, 0.15);
+    border-radius: 20px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.08);
+}
+
+.cyber-card:hover {
+    border-color: var(--neon-blue);
+    box-shadow: 0 0 20px rgba(0, 242, 254, 0.2);
+    transform: translateY(-3px);
+}
+
+/* --- Updated Dropdown & Input Styling --- */
+.cyber-input {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    color: white !important;
+    padding: 6px 10px;
+    font-size: 14px;
+    border-radius: 7px;
+    transition: all 0.3s;
+}
+.cyber-input:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border-color: var(--neon-blue) !important;
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.4) !important;
+    color: white !important;
+    outline: none;
+}
+
+/* Fix for Bootstrap Select Arrow in Dark Mode */
+/* .form-select.cyber-input {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%2300f2fe' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e") !important;
+            background-position: right 0.75rem center !important;
+            background-size: 16px 12px !important;
+        } */
+
+/* Forcing Option backgrounds to be dark */
+.cyber-input option {
+    background-color: #030712 !important;
+    color: white !important;
+}
+
+.cyber-input:focus {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border-color: var(--neon-blue) !important;
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.4) !important;
+    color: white !important;
+    outline: none;
+}
+
+/* Neon Border Button */
+.btn-neon {
+    background: transparent;
+    border: 1px solid var(--neon-blue);
+    color: var(--neon-blue);
+    border-radius: 50px;
+    padding: 10px 20px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 0 10px rgba(0, 242, 254, 0.1);
+    font-size: 15px;
+}
+
+.btn-neon:hover {
+    background: var(--neon-blue);
+    color: var(--bg-dark);
+    box-shadow: 0 0 25px rgba(0, 242, 254, 0.5);
+}
+.btn-neon-sm {
+    background: transparent;
+
+    border: 1px solid var(--neon-blue);
+    color: var(--neon-blue);
+    border-radius: 30px !important;
+    padding: 7px 10px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 0 10px rgba(0, 242, 254, 0.1);
+}
+.btn-neon-sm:hover {
+    background: var(--neon-blue);
+    color: var(--bg-dark);
+    box-shadow: 0 0 25px rgba(0, 242, 254, 0.5);
+}
+.btn-warning {
+    background: transparent;
+    border: 1px solid var(--warning);
+    color: var(--warning);
+    border-radius: 50px;
+    padding: 8px 15px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 0 10px rgba(0, 242, 254, 0.1);
+}
+
+.btn-danger-outline {
+    background: transparent;
+    border: 1px solid #ff0000;
+    color: #ff0000;
+    border-radius: 50px;
+    padding: 12px 30px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.1);
+}
+
+.btn-danger-outline:hover {
+    background: #ff0000;
+    color: #fff;
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.5);
+    transform: translateY(-2px);
+}
+
+/* Hero Styling */
+.hero-section {
+    padding: 180px 0 100px;
+    position: relative;
+}
+
+.hero-title {
+    font-size: calc(2.5rem + 3vw);
+    line-height: 1;
+    margin-bottom: 1.5rem;
+}
+
+/* Mock Terminal - Cyber Look */
+.cyber-terminal {
+    background: #0a0a0f;
+    border: 1px solid var(--neon-purple);
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 0 30px rgba(112, 0, 255, 0.15);
+}
+
+/* Chart */
+.chart-wrapper {
+    position: relative;
+    height: 300px;
+    width: 100%;
+}
+
+/* Skill Item */
+.skill-node {
+    background: rgba(255, 255, 255, 0.02);
+    border-left: 3px solid var(--neon-blue);
+    padding: 15px;
+    border-radius: 0 10px 10px 0;
+    transition: all 0.2s;
+}
+
+.skill-node:hover {
+    background: rgba(0, 242, 254, 0.05);
+    border-left-color: var(--neon-cyan);
+    padding-left: 20px;
+}
+
+/* Project Row */
+.project-glow-row {
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.02) 0%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 40px;
+    margin-bottom: 2rem;
+    transition: border-color 0.3s;
+}
+
+.project-glow-row:hover {
+    border-color: var(--neon-purple);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--neon-purple);
+    border-radius: 10px;
+}
+
+/* --- Pulse Animation for Freelance Badge --- */
+.pulse-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--neon-blue);
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 10px var(--neon-blue);
+    animation: cyber-pulse 2s infinite ease-in-out;
+}
+
+@keyframes cyber-pulse {
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+        box-shadow: 0 0 10px var(--neon-blue);
+    }
+
+    50% {
+        opacity: 0.4;
+        transform: scale(1.3);
+        box-shadow: 0 0 20px var(--neon-blue);
+    }
+}
+
+.status-badge {
+    padding: 5px 12px;
+
+    font-size: 0.65rem;
+    border-radius: 50px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.status-dev {
+    background: rgba(255, 193, 7, 0.1);
+    color: #ffc107;
+    border: 1px solid #ffc107;
+}
+
+.status-live {
+    width: auto;
+    background: rgba(0, 242, 254, 0.1);
+    color: var(--neon-blue);
+    border: 1px solid var(--neon-blue);
+    box-shadow: 0 0 10px rgba(0, 242, 254, 0.4);
+}
+
+.tech-pill {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    padding: 4px 10px;
+    font-size: 0.65rem;
+    border-radius: 20px;
+    color: #cbd5e1;
+}
+
+.progress-neon {
+    background: var(--neon-blue);
+    box-shadow: 0 0 12px var(--neon-blue);
+}
+
+.green-blink {
+    width: 10px;
+    height: 10px;
+    background-color: #00ff6a;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 6px;
+    box-shadow: 0 0 8px #00ff6a;
+    animation: greenPulse 1.5s infinite ease-in-out;
+}
+
+.yellow-blink {
+    width: 10px;
+    height: 10px;
+    background-color: #ffeb3b;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 6px;
+    box-shadow: 0 0 8px #ffeb3b;
+    animation: yellowPulse 1.5s infinite ease-in-out;
+}
+
+@keyframes yellowPulse {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+        box-shadow: 0 0 8px #ffeb3b;
+    }
+
+    50% {
+        opacity: 0.3;
+        transform: scale(1.4);
+        box-shadow: 0 0 18px #ffeb3b;
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+        box-shadow: 0 0 8px #ffeb3b;
+    }
+}
+
+@keyframes greenPulse {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+        box-shadow: 0 0 8px #00ff6a;
+    }
+
+    50% {
+        opacity: 0.3;
+        transform: scale(1.4);
+        box-shadow: 0 0 18px #00ff6a;
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+        box-shadow: 0 0 8px #00ff6a;
+    }
+}
+
+.nav-link:hover {
+    color: #00f2fe !important;
+}
+
+.dropdown-menu {
+    backdrop-filter: blur(15px);
+}
+
+.cyber-input::placeholder {
+    color: #505050;
+}
+
+.resume-preview h3 {
+    font-weight: 700;
+}
+
+.resume-preview hr {
+    border-color: #00ffff;
+}
+
+.resume-preview {
+    min-height: 400px;
+}
+
+.cyber-skill-card {
+    background: linear-gradient(145deg, #0f172a, #1e293b);
+    border-radius: 12px;
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    transition: 0.3s ease;
+}
+
+.cyber-skill-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0, 255, 255, 0.15);
+}
+
+.skill-input {
+    background: transparent;
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    color: #fff;
+}
+
+.skill-level-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.level-btn {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: none;
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.level-btn.minus {
+    background: #7f1d1d;
+    color: white;
+}
+
+.level-btn.plus {
+    background: #065f46;
+    color: white;
+}
+
+.level-btn:hover {
+    transform: scale(1.1);
+}
+
+.skill-stars {
+    font-size: 22px;
+}
+
+.star {
+    color: #334155;
+    transition: 0.2s ease;
+}
+
+.star.active {
+    color: #00ffff;
+    text-shadow: 0 0 6px #00ffff;
+}
+
+.edu-card {
+    background: linear-gradient(145deg, #0f172a, #1e293b);
+    border-radius: 14px;
+    border: 1px solid rgba(0, 255, 255, 0.15);
+    transition: 0.3s ease;
+}
+
+.edu-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0, 255, 255, 0.15);
+}
+
+.edu-icon {
+    font-size: 24px;
+    width: 45px;
+    height: 45px;
+    background: rgba(0, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.edu-card .form-label {
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+.job-card {
+    background: linear-gradient(145deg, #0f172a, #1e293b);
+    border-radius: 14px;
+    border: 1px solid rgba(0, 255, 255, 0.15);
+    transition: 0.3s ease;
+}
+
+.job-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0, 255, 255, 0.2);
+}
+
+.job-icon {
+    font-size: 24px;
+    width: 45px;
+    height: 45px;
+    background: rgba(0, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.job-card .form-label {
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+input[type="file"].cyber-input {
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgba(0, 255, 255, 0.4);
+    padding: 8px;
+}
+
+input[type="file"].cyber-input::file-selector-button {
+    background: linear-gradient(135deg, #00ffff, #0ea5e9);
+    border: none;
+    color: #000;
+    padding: 6px 12px;
+    margin-right: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    font-weight: 600;
+}
+
+input[type="file"].cyber-input::file-selector-button:hover {
+    background: #00ffff;
+    box-shadow: 0 0 8px #00ffff;
+}
+
+.upload-btn {
+    background: linear-gradient(135deg, #00ffff, #0ea5e9);
+    color: #000;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.custom-tabs .nav-link {
+    background: rgba(0, 255, 255, 0.1);
+    border-radius: 8px;
+    color: #00ffff;
+    border: none;
+    font-size: 13px;
+    padding: 6px 12px;
+}
+
+.custom-tabs .nav-link.active {
+    background: #00ffff;
+    color: #000;
+}
+@media screen and (max-width: 600px) {
+    #resumeTabs {
+        display: flex;
+        flex-wrap: nowrap; /* Forces them in one line */
+        overflow-x: auto; /* Adds horizontal scroll if too many tabs */
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 8px;
+        gap: 8px;
+        border: none; /* Removes default Bootstrap border */
+    }
+
+    #resumeTabs::-webkit-scrollbar {
+        display: none; /* Keeps it clean on mobile */
+    }
+
+    #resumeTabs .nav-item {
+        flex: 0 0 auto; /* Prevents tabs from shrinking */
+    }
+
+    #resumeTabs .nav-link {
+        background: rgba(0, 209, 255, 0.05); /* Match your --brand-accent */
+        border: 1px solid rgba(0, 209, 255, 0.2);
+        border-radius: 12px; /* Bento style */
+        color: var(--brand-accent, #00d1ff);
+        font-size: 12px; /* Much better for accessibility */
+        font-weight: 600;
+        padding: 10px 16px;
+        white-space: nowrap; /* Prevents text wrapping */
+        transition: all 0.3s ease;
+    }
+
+    #resumeTabs .nav-link.active {
+        background: var(--brand-prime, #5d3fd3);
+        color: white !important;
+        border-color: transparent;
+        box-shadow: 0 0 15px rgba(93, 63, 211, 0.3);
+    }
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

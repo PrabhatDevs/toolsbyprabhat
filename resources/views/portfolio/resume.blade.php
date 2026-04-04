@@ -1,0 +1,513 @@
+@extends('layouts.app')
+@section('content')
+    <style>
+        :root {
+            --bg-dark: #030712;
+            --neon-blue: #00f2fe;
+            --neon-purple: #7000ff;
+            --cyber-cyan: #00f5ff;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-dark);
+            color: #e2e8f0;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .code-font {
+            font-family: 'Fira Code', monospace;
+        }
+
+        /* Neon Background Blobs */
+        /* .neon-blob {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+            filter: blur(120px);
+            opacity: 0.15;
+            z-index: -1;
+            border-radius: 50%;
+            overflow: hidden;
+        } */
+        .neon-blob {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            right: -5%;
+        }
+
+        .neon-bg-wrapper {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .neon-blob {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            filter: blur(120px);
+            opacity: 0.15;
+            border-radius: 50%;
+        }
+
+        .blob-right {
+            top: 10%;
+            right: -50px;
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+        }
+
+        .blob-left {
+            bottom: 10%;
+            left: -150px;
+            background: var(--neon-purple);
+        }
+
+
+        /* Typography */
+        .gradient-text {
+            background: linear-gradient(45deg, var(--neon-blue), #4facfe, var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+        }
+
+        /* Navbar - Glassmorphism */
+        .navbar {
+            background: rgba(3, 7, 18, 0.8) !important;
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--glass-border);
+            transition: all 0.4s ease;
+        }
+
+        .cyber-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .cyber-card:hover {
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.2);
+            transform: translateY(-3px);
+        }
+
+        /* --- Updated Dropdown & Input Styling --- */
+        .cyber-input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            color: white !important;
+            padding: 12px 16px;
+            border-radius: 12px;
+            transition: all 0.3s;
+        }
+
+        /* Fix for Bootstrap Select Arrow in Dark Mode */
+        /* .form-select.cyber-input {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%2300f2fe' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e") !important;
+            background-position: right 0.75rem center !important;
+            background-size: 16px 12px !important;
+        } */
+
+        /* Forcing Option backgrounds to be dark */
+        .cyber-input option {
+            background-color: #030712 !important;
+            color: white !important;
+        }
+
+        .cyber-input:focus {
+            background-color: rgba(255, 255, 255, 0.1) !important;
+            border-color: var(--neon-blue) !important;
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.4) !important;
+            color: white !important;
+            outline: none;
+        }
+
+
+
+
+
+        /* Neon Border Button */
+        .btn-neon {
+            background: transparent;
+            border: 1px solid var(--neon-blue);
+            color: var(--neon-blue);
+            border-radius: 50px;
+            padding: 12px 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 10px rgba(0, 242, 254, 0.1);
+        }
+
+        .btn-neon:hover {
+            background: var(--neon-blue);
+            color: var(--bg-dark);
+            box-shadow: 0 0 25px rgba(0, 242, 254, 0.5);
+        }
+
+        /* Hero Styling */
+        .hero-section {
+            padding: 180px 0 100px;
+            position: relative;
+        }
+
+        .hero-title {
+            font-size: calc(2.5rem + 3vw);
+            line-height: 1;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Mock Terminal - Cyber Look */
+        .cyber-terminal {
+            background: #0a0a0f;
+            border: 1px solid var(--neon-purple);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 0 30px rgba(112, 0, 255, 0.15);
+        }
+
+        /* Chart */
+        .chart-wrapper {
+            position: relative;
+            height: 300px;
+            width: 100%;
+        }
+
+        /* Skill Item */
+        .skill-node {
+            background: rgba(255, 255, 255, 0.02);
+            border-left: 3px solid var(--neon-blue);
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            transition: all 0.2s;
+        }
+
+        .skill-node:hover {
+            background: rgba(0, 242, 254, 0.05);
+            border-left-color: var(--neon-cyan);
+            padding-left: 20px;
+        }
+
+        /* Project Row */
+        .project-glow-row {
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0) 100%);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 2rem;
+            transition: border-color 0.3s;
+        }
+
+        .project-glow-row:hover {
+            border-color: var(--neon-purple);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--neon-purple);
+            border-radius: 10px;
+        }
+
+
+        /* --- Pulse Animation for Freelance Badge --- */
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--neon-blue);
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 10px var(--neon-blue);
+            animation: cyber-pulse 2s infinite ease-in-out;
+        }
+
+        @keyframes cyber-pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+                box-shadow: 0 0 10px var(--neon-blue);
+            }
+
+            50% {
+                opacity: 0.4;
+                transform: scale(1.3);
+                box-shadow: 0 0 20px var(--neon-blue);
+            }
+        }
+   
+        .status-badge {
+            padding: 5px 12px;
+            font-size: 0.65rem;
+            border-radius: 50px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .status-dev {
+            background: rgba(255, 193, 7, 0.1);
+            color: #ffc107;
+            border: 1px solid #ffc107;
+        }
+
+        .status-live {
+            background: rgba(0, 242, 254, 0.1);
+            color: var(--neon-blue);
+            border: 1px solid var(--neon-blue);
+            box-shadow: 0 0 10px rgba(0, 242, 254, 0.4);
+        }
+
+        .tech-pill {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            padding: 4px 10px;
+            font-size: 0.65rem;
+            border-radius: 20px;
+            color: #cbd5e1;
+        }
+
+        .progress-neon {
+            background: var(--neon-blue);
+            box-shadow: 0 0 12px var(--neon-blue);
+        }
+
+        .green-blink {
+            width: 10px;
+            height: 10px;
+            background-color: #00ff6a;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 6px;
+            box-shadow: 0 0 8px #00ff6a;
+            animation: greenPulse 1.5s infinite ease-in-out;
+        }
+
+        .yellow-blink {
+            width: 10px;
+            height: 10px;
+            background-color: #ffeb3b;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 6px;
+            box-shadow: 0 0 8px #ffeb3b;
+            animation: yellowPulse 1.5s infinite ease-in-out;
+        }
+
+        @keyframes yellowPulse {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+                box-shadow: 0 0 8px #ffeb3b;
+            }
+
+            50% {
+                opacity: 0.3;
+                transform: scale(1.4);
+                box-shadow: 0 0 18px #ffeb3b;
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+                box-shadow: 0 0 8px #ffeb3b;
+            }
+        }
+
+
+        @keyframes greenPulse {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+                box-shadow: 0 0 8px #00ff6a;
+            }
+
+            50% {
+                opacity: 0.3;
+                transform: scale(1.4);
+                box-shadow: 0 0 18px #00ff6a;
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+                box-shadow: 0 0 8px #00ff6a;
+            }
+        }
+    </style>
+    <section id="resume-page" class="py-5" style="background:#050a15;">
+        <div class="container py-5">
+
+            <!-- Header -->
+            <div class="cyber-card p-4 mb-5">
+                <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center">
+                    <div>
+                        <h1 class="fw-bold text-white mb-1">Prabhat Yadav</h1>
+                        <p class="text-info mb-2">Full Stack Developer (PHP)</p>
+                        <p class="text-secondary small mb-0">
+                            📍 Gorakhpur, Uttar Pradesh <br>
+                            📧 yadavprabhat706@gmail.com <br>
+                        </p>
+                    </div>
+                    <div class="text-lg-end mt-3 mt-lg-0 d-flex flex-column align-items-lg-end gap-3">
+                        <span class="status-badge status-live align-items-center d-inline-flex gap-1">
+                            <span class="green-blink"></span> Open to Long-Term Roles
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Objective -->
+            <div class="cyber-card p-4 mb-4">
+                <h4 class="text-info mb-3">Objective</h4>
+                <p class="text-secondary small mb-0">
+                    With 2+ year of freelance experience as a Core PHP Full Stack Developer,
+                    I have independently built complete web applications, APIs, dashboards,
+                    and secure backend systems. I am seeking a long-term role where I can
+                    contribute consistently and grow with the organization.
+                </p>
+            </div>
+
+            <!-- Professional Summary -->
+            <div class="cyber-card p-4 mb-4">
+                <h4 class="text-info mb-3">Professional Summary</h4>
+                <ul class="text-secondary small ps-3 mb-0">
+                    <li>Developed 20+ secure admin dashboards using Core PHP & Laravel.</li>
+                    <li>Built full REST APIs for 8+ projects including authentication & approval systems.</li>
+                    <li>Worked on 20+ multi-auth web applications.</li>
+                    <li>Integrated Razorpay, Stripe, PayPal, Email & Notifications.</li>
+                    <li>Good hold in cookies, sessions, JSON handling & error management.</li>
+                    <li>Built custom MVC framework using Core PHP (Model, Controller, Middleware, Routes).</li>
+                    <li>Implemented charts & analytics with advanced filtering logic.</li>
+                </ul>
+            </div>
+
+            <!-- Key Skills -->
+            <div class="cyber-card p-4 mb-4">
+                <h4 class="text-info mb-3">Key Skills</h4>
+                <div class="d-flex flex-wrap gap-2">
+                    <span class="tech-pill">PHP</span>
+                    <span class="tech-pill">Laravel 11/12</span>
+                    <span class="tech-pill">MySQL</span>
+                    <span class="tech-pill">JavaScript</span>
+                    <span class="tech-pill">jQuery</span>
+                    <span class="tech-pill">REST API</span>
+                    <span class="tech-pill">Payment Integration</span>
+                    <span class="tech-pill">MVC Architecture</span>
+                    <span class="tech-pill">Git & GitHub</span>
+                    <span class="tech-pill">Bootstrap 5</span>
+                    <span class="tech-pill">Ajax</span>
+                    <span class="tech-pill">MongoDB</span>
+                    <span class="tech-pill">Node</span>
+                </div>
+            </div>
+
+            <!-- Experience -->
+            <div class="cyber-card p-4 mb-4">
+                <h4 class="text-info mb-3">Experience</h4>
+
+                <div class="mb-3">
+                    <h6 class="fw-bold text-white mb-1">
+                        DAPS Software — PHP/Laravel Developer
+                    </h6>
+                    <small class="text-secondary">
+                        Feb 2024 – Sept 2024 | Noida
+                    </small>
+                </div>
+
+                <ul class="text-secondary small ps-3 mb-0">
+                    <li>Developed interactive web applications using PHP & Laravel.</li>
+                    <li>Created secure APIs for authentication, listings & approvals.</li>
+                    <li>Integrated payment gateways with proper security standards.</li>
+                    <li>Worked with multiple HTTP methods & RESTful architecture.</li>
+                    <li>Handled dashboards, analytics & backend logic implementation.</li>
+                </ul>
+            </div>
+
+            <!-- Key Projects -->
+            <div class="cyber-card p-4 mb-4">
+                <h4 class="text-info mb-3">Key Projects</h4>
+
+                <div class="mb-3">
+                    <h6 class="fw-bold text-white">E-Commerce Web Application</h6>
+                    <p class="text-secondary small mb-1">
+                        Built complete backend systems, dashboards, order management,
+                        Razorpay integration, search functionality & API integration.
+                    </p>
+                </div>
+
+                <div class="mb-3">
+                    <h6 class="fw-bold text-white">Property Dealing Web App</h6>
+                    <p class="text-secondary small mb-1">
+                        Developed backend, property filtering APIs, authentication,
+                        Stripe/PayPal integration & performance optimization.
+                    </p>
+                </div>
+
+                <div class="mb-3">
+                    <h6 class="fw-bold text-white">Real Estate Property API</h6>
+                    <p class="text-secondary small mb-1">
+                        Built RESTful APIs with Google Maps integration,
+                        advanced search filters & optimized database queries.
+                    </p>
+                </div>
+
+                <div>
+                    <h6 class="fw-bold text-white">Restaurant Management API</h6>
+                    <p class="text-secondary small mb-0">
+                        Developed secure CRUD APIs for menu, orders, reservations
+                        and integrated real-time updates with payment gateway.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Education -->
+            <div class="cyber-card p-4 mb-4">
+                <h4 class="text-info mb-3">Education</h4>
+                <p class="text-secondary small mb-1">
+                    B.C.A (Bachelor of Computer Application)
+                </p>
+                <p class="text-secondary small mb-0">
+                    NEF College — CGPA: 8.1
+                </p>
+            </div>
+
+            <!-- Live Projects -->
+            <div class="cyber-card p-4">
+                <h4 class="text-info mb-3">Some Completed Projects</h4>
+                <ul class="text-secondary small ps-3 mb-0">
+                    <li>kwiktalk.freesite.online</li>
+                    <li>grataeshop.com</li>
+                    <li>traveltalktours.com</li>
+                    <li>allbohras.com</li>
+                    <li>Restaurant Management Admin Dashboards</li>
+                    <li>Bible Verses App</li>
+                    <li>Social Media Admin Dashboard</li>
+                    <li>US Stock Live Update Project</li>
+                    <li>E-Commerce Platform (currently working)</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+  
+@endsection

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prabhat Yadav - Resume Reference</title>
+    <style>
+        /* CSS Reset for PDF Consistency */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', 'Helvetica', sans-serif;
+            background: #ffffff;
+            color: #000000;
+            line-height: 1.4;
+            padding: 40px;
+        }
+
+        .resume-container {
+            width: 100%;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        /* Header Section */
+        header {
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .contact-line {
+            font-size: 13px;
+            margin-bottom: 4px;
+        }
+
+        .contact-line strong {
+            font-weight: bold;
+        }
+
+        /* Section Styling */
+        section {
+            margin-top: 20px;
+        }
+
+        h2 {
+            font-size: 16px;
+            text-transform: uppercase;
+            border-bottom: 1.5px solid #000000;
+            padding-bottom: 3px;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        p.content-text {
+            font-size: 13.5px;
+            text-align: justify;
+            margin-bottom: 10px;
+        }
+
+        /* Core Competencies Pipe Style */
+        .competencies-text {
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        /* Technical Skills Key-Value Style */
+        .skills-group {
+            font-size: 13.5px;
+            margin-bottom: 4px;
+        }
+
+        .skills-group strong {
+            font-weight: bold;
+        }
+
+        /* Experience & Projects Entries */
+        .entry {
+            margin-bottom: 18px;
+        }
+
+        .entry-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            font-weight: bold;
+            font-size: 15px;
+            margin-bottom: 2px;
+        }
+
+        .entry-subtitle {
+            font-style: italic;
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 6px;
+        }
+
+        /* Professional Bullet Points */
+        ul {
+            padding-left: 25px;
+            list-style-type: disc;
+        }
+
+        li {
+            font-size: 13.5px;
+            margin-bottom: 5px;
+            text-align: justify;
+        }
+
+        /* Print Optimization */
+        @media print {
+            body {
+                padding: 0;
+            }
+
+            .resume-container {
+                max-width: 100%;
+            }
+
+            @page {
+                margin: 1.5cm;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="resume-container">
+        <header>
+            <h1>Prabhat Yadav</h1>
+            <div class="contact-line">
+                <strong>Email:</strong> prabhat@email.com | <strong>Phone:</strong> +91 XXXXX XXXXX
+            </div>
+            <div class="contact-line">
+                <strong>Location:</strong> India | <strong>Portfolio:</strong> mrprabhat.com |
+                <strong>LinkedIn:</strong> linkedin.com/in/username | <strong>GitHub:</strong> github.com/username
+            </div>
+        </header>
+
+        <section>
+            <h2>Professional Summary</h2>
+            <p class="content-text">
+                Full Stack Developer with 3+ years of professional experience in designing, developing, and maintaining
+                scalable web applications using PHP and Laravel. Strong expertise in RESTful API development,
+                authentication systems, payment gateway integration, database design, and backend optimization.
+                Experienced in delivering secure, high-performance production systems and collaborating with
+                cross-functional teams in remote environments.
+            </p>
+        </section>
+
+        <section>
+            <h2>Core Competencies</h2>
+            <p class="competencies-text">
+                Backend Development | Laravel Framework | PHP Programming | RESTful API Design | MySQL Database
+                Management | MVC Architecture | Authentication & Authorization | CSRF & XSRF Protection | Session
+                Management | Payment Gateway Integration (Stripe, Razorpay, Omnipay) | API Security | Git Version
+                Control | Server Deployment | Performance Optimization | Object-Oriented Programming | Problem Solving
+            </p>
+        </section>
+
+        <section>
+            <h2>Technical Skills</h2>
+            <div class="skills-group"><strong>Programming Languages:</strong> PHP, JavaScript</div>
+            <div class="skills-group"><strong>Frameworks:</strong> Laravel, Bootstrap</div>
+            <div class="skills-group"><strong>Database:</strong> MySQL</div>
+            <div class="skills-group"><strong>API & Integrations:</strong> REST APIs, Stripe, Razorpay, Omnipay</div>
+            <div class="skills-group"><strong>Development Tools:</strong> Git, Postman, Composer</div>
+            <div class="skills-group"><strong>Concepts:</strong> MVC Architecture, Secure Authentication, Role-Based
+                Access Control, API Token Management</div>
+        </section>
+
+        <section>
+            <h2>Professional Experience</h2>
+
+            <div class="entry">
+                <div class="entry-header">
+                    <span>Freelance Full Stack Developer</span>
+                    <span style="font-style: italic; font-weight: normal;">2023 – Present</span>
+                </div>
+                <div class="entry-subtitle">Remote Projects</div>
+                <ul>
+                    <li>Designed and developed multi-role authentication systems (Admin, Instructor, Student) using
+                        Laravel middleware and role-based access control.</li>
+                    <li>Built scalable eCommerce and delivery management platforms handling real-time order tracking and
+                        payment processing.</li>
+                    <li>Integrated secure payment gateways including Stripe, Razorpay, and Omnipay with webhook handling
+                        and transaction validation.</li>
+                </ul>
+            </div>
+
+            <div class="entry">
+                <div class="entry-header">
+                    <span>Laravel Developer</span>
+                    <span style="font-style: italic; font-weight: normal;">2022 – 2023</span>
+                </div>
+                <div class="entry-subtitle">Contract-Based Projects</div>
+                <ul>
+                    <li>Developed backend modules for educational and management systems including course upload, video
+                        handling, and enrollment workflows.</li>
+                    <li>Implemented server-side validation and secure session management mechanisms.</li>
+                    <li>Designed clean MVC architecture structures for scalable project growth.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2>Key Projects</h2>
+            <ul>
+                <li><strong>E-Commerce Platform:</strong> Developed a full-featured shopping system with admin
+                    dashboard, product management, payment integration, and order tracking.</li>
+                <li><strong>Tour & Package Management System:</strong> Built a multi-auth travel booking system
+                    supporting package listings, bookings, and user management.</li>
+            </ul>
+        </section>
+    </div>
+
+</body>
+
+</html>
