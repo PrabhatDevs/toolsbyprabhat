@@ -807,15 +807,50 @@
 
 
     <!-- Main Content -->
-    <footer class="py-4 border-top border-secondary bg-black">
-        <div class="container text-center text-secondary small opacity-50">
-            <p class="mb-0">©
-                <script>
-                    document.write(new Date().getFullYear())
-                </script> Prabhat Yadav. Developed with
-                <span style="color: var(--neon-blue);">❤️</span>
-            </p>
+   
+    <!-- Main Content -->
+    <footer class="py-2 border-top border-secondary bg-black">
+        <div class="container text-center">
+            <div class="mb-1">
+                <ul class="list-inline mb-0 text-secondary small opacity-75">
+                    <li class="list-inline-item px-2">
+                        <a href="{{ route('terms') }}" class="text-decoration-none text-secondary hover-neon">Terms of
+                            Service</a>
+                    </li>
+                    <li class="list-inline-item px-2">
+                        <a href="{{ route('privacy') }}" class="text-decoration-none text-secondary hover-neon">Privacy
+                            Policy</a>
+                    </li>
+                    <li class="list-inline-item px-2">
+                        <a href="{{ route('refund') }}" class="text-decoration-none text-secondary hover-neon">Refund
+                            Policy</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="text-secondary small opacity-50">
+                <p class="mb-0 text-secondary small">
+                    ©
+                    <span class="me-1">
+                      2026
+                    </span>
+                    Toolsbyprabhat. Developed with
+                    <span style="color: var(--neon-blue);">❤️</span>
+                </p>
+            </div>
         </div>
+
+        <style>
+            .hover-neon:hover {
+                color: var(--neon-blue) !important;
+                text-shadow: 0 0 8px var(--neon-blue);
+                transition: 0.3s;
+            }
+
+            .list-inline-item:not(:last-child) {
+                border-right: 1px solid rgba(255, 255, 255, 0.1);
+            }
+        </style>
     </footer>
 
 

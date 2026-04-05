@@ -506,7 +506,51 @@
 
 
     <!-- Main Content -->
-    <footer class="mt-5 py-4 border-top border-dark">
+    <footer class="py-2 border-top border-secondary bg-black">
+        <div class="container text-center">
+            <div class="mb-1">
+                <ul class="list-inline mb-0 text-secondary small opacity-75">
+                    <li class="list-inline-item px-2">
+                        <a href="{{ route('terms') }}" class="text-decoration-none text-secondary hover-neon">Terms of
+                            Service</a>
+                    </li>
+                    <li class="list-inline-item px-2">
+                        <a href="{{ route('privacy') }}" class="text-decoration-none text-secondary hover-neon">Privacy
+                            Policy</a>
+                    </li>
+                    <li class="list-inline-item px-2">
+                        <a href="{{ route('refund') }}" class="text-decoration-none text-secondary hover-neon">Refund
+                            Policy</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="text-secondary small opacity-50">
+                <p class="mb-0 text-secondary small">
+                    ©
+                    <span class="me-1">
+                      2026
+                    </span>
+                    Toolsbyprabhat. Developed with
+                    <span style="color: var(--neon-blue);">❤️</span>
+                </p>
+            </div>
+        </div>
+
+        <style>
+            .hover-neon:hover {
+                color: var(--neon-blue) !important;
+                text-shadow: 0 0 8px var(--neon-blue);
+                transition: 0.3s;
+            }
+
+            .list-inline-item:not(:last-child) {
+                border-right: 1px solid rgba(255, 255, 255, 0.1);
+            }
+        </style>
+    </footer>
+    <!-- Main Content -->
+    {{-- <footer class="mt-5 py-4 border-top border-dark">
         <div class="container text-center">
             <p class="text-secondary mb-2">
                 &copy; {{ date('Y') }} — Built by
@@ -516,12 +560,12 @@
                 A solo-developer project dedicated to <span class="text-info">ATS Optimization</span>.
                 Because your career deserves more than just a template.
             </p>
-            {{-- <div class="social-links mt-3">
+            <div class="social-links mt-3">
              <a href="#" class="text-info mx-2"><i class='bx bxl-linkedin'></i></a>
              <a href="#" class="text-info mx-2"><i class='bx bxl-github'></i></a>
-        </div> --}}
         </div>
-    </footer>
+        </div>
+    </footer> --}}
   
 
     @if ($errors->any())

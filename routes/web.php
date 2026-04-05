@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DownloadResumeController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LegalController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PricingController;
 use App\Http\Controllers\ProfileController;
@@ -178,6 +179,9 @@ Route::middleware(['json_auth'])->group(function () {
 
 });
 
+Route::get('/terms', [LegalController::class, 'terms'])->name('terms');
+Route::get('/privacy', [LegalController::class, 'privacy'])->name('privacy');
+Route::get('/refund-policy', [LegalController::class, 'refund'])->name('refund');
 
 
 Route::get('/error', function () {

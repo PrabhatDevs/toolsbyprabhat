@@ -881,12 +881,12 @@
                     </p>
 
                     <div class="d-flex flex-column gap-3">
-                        <a href="mailto:yadavprabhat706@gmail.com"
+                        <a href="mailto:info@toolsbyprabhat.com"
                             class="cyber-card p-3 d-flex align-items-center gap-3 text-decoration-none text-white w-100">
                             <span class="fs-4">📧</span>
                             <div>
                                 <small class="text-secondary d-block">Protocol: Email</small>
-                                <span class="fw-bold">yadavprabhat706@gmail.com</span>
+                                <span class="fw-bold">info@toolsbyprabhat.com</span>
                             </div>
                         </a>
                         <div class="cyber-card p-3 d-flex align-items-center gap-3"><span>📍</span><span
