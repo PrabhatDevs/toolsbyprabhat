@@ -31,12 +31,19 @@
                         <input type="email" name="email" class="form-control cyber-input form_email"
                             placeholder="Email Address" required>
                     </div>
+                    <!-- 🔐 Turnstile -->
+                    <div class="mb-3">
+                        <div class="cf-turnstile" data-sitekey="{{ config('services.turnstile.site_key') }}"></div>
+                    </div>
 
+                    <!-- 🪤 Honeypot -->
+                    <input type="text" name="website" style="display:none">
                     <!-- Sign In Button -->
                     <button type="submit" class="btn btn-neon w-100 mb-3">
                         🔐 Send Password Reset Link
                     </button>
                 </form>
+
                 <script>
                     // Optional: Add client-side validation or interactivity here
                     document.getElementById('forgot-password').addEventListener('submit', function() {
@@ -56,5 +63,4 @@
         </div>
 
     </div>
-   
 @endsection

@@ -14,6 +14,13 @@
 
                 <form method="POST" action="{{ route('verification.send') }}">
                     @csrf
+                    <!-- 🔐 Turnstile -->
+                    <div class="mb-3">
+                        <div class="cf-turnstile" data-sitekey="{{ config('services.turnstile.site_key') }}"></div>
+                    </div>
+
+                    <!-- 🪤 Honeypot -->
+                    <input type="text" name="website" style="display:none">
                     <button type="submit" class="btn btn-neon w-100 mb-3">
                         🔄 Resend Verification Email
                     </button>

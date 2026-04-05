@@ -21,7 +21,11 @@
      <link rel="icon" type="image/x-icon" href="{{ asset('images/icons/mrprabhat-bg-logo.png') }}">
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+<script
+  src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+  async
+  defer
+></script>
     <style>
         :root {
             --bg-dark: #030712;
@@ -906,12 +910,15 @@
                         <h4 class="fw-bold mb-4 text-white">Transmission Query</h4>
                         <form id="queryForm" action="{{ route('submitQuery') }}" method="post">
                             @csrf
+                            <div class="cf-turnstile" data-sitekey="{{config('services.turnstile.site_key')}}"></div>
+                            <input type="text" name="website" style="display:none">
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <label class="small text-secondary mb-1">Full Name</label>
                                     <input type="text" name="name" class="form-control cyber-input"
                                         placeholder="User Identifier" required>
                                 </div>
+
                                 <div class="col-md-6">
                                     <label class="small text-secondary mb-1">Email Protocol</label>
                                     <input type="email" name="email" class="form-control cyber-input"

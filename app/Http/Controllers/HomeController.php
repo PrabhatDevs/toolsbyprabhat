@@ -42,6 +42,40 @@ class HomeController extends Controller
 
     public function Queries(Request $request)
     {
+        if ($request->filled('website')) {
+            return back()->with('error', 'Spam detected');
+        }
+        if (empty($request->input('cf-turnstile-response'))) {
+            die("Verification required");
+        }
+
+        $token = $request->input('cf-turnstile-response');
+        $secret = config('services.turnstile.secret_key');
+        $ip = $_SERVER['HTTP_CF_CONNECTING_IP'] ?? $_SERVER['REMOTE_ADDR'];
+        $data = [
+            'secret' => $secret,
+            'response' => $token,
+            'remoteip' => $ip
+        ];
+
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL, "https://challenges.cloudflare.com/turnstile/v0/siteverify");
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $response = curl_exec($ch);
+        curl_close($ch);
+        if ($response === false) {
+            return back()->with('error', 'Verification failed. Try again.');
+        }
+        $result = json_decode($response, true);
+
+        if (!$result['success']) {
+            die("Bot detected");
+        }
+
         try {
             $validated = $request->validate([
                 'name' => 'required|string|max:255',

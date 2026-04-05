@@ -62,4 +62,9 @@ return [
     'app' => [
         'name' => env('APP_NAME', 'ToolsByPrabhat'),
     ],
+    'turnstile' => [
+        'site_key' => env('NO_BOT_SITE_KEY'),
+        'secret_key' => env('NO_BOT_SECRET_KEY'),
+
+    ]
 ];
