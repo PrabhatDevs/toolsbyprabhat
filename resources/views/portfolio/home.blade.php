@@ -759,6 +759,92 @@
         </div>
     </section>
 
+<section id="tools-terminal" class="py-5 border-top border-secondary" style="background:#050a15;">
+    <div class="container py-5">
+
+        <div class="text-center mb-5">
+            <h2 class="fw-bold text-white mb-2 d-flex align-items-center justify-content-center gap-2">
+                <span class="blue-blink"></span> My Digital Tools
+            </h2>
+            <p class="text-secondary mx-auto" style="max-width: 600px;">
+                A collection of AI-powered utilities and helper tools I've built to make daily tasks easier, faster, and more secure.
+            </p>
+        </div>
+
+        <div class="row g-4 mb-5">
+
+            <div class="col-md-6 col-lg-4">
+                <div class="cyber-card h-100 p-4 border-info">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="badge rounded-pill bg-success-subtle text-success small px-2 py-1 border border-success">LIVE</span>
+                        <i class="bi bi-file-earmark-person text-info fs-4"></i>
+                    </div>
+                    <h5 class="text-white fw-bold">AI Resume Builder</h5>
+                    <p class="text-secondary small">Type your details and get a professional resume in seconds. No data is stored, keeping your history private.</p>
+                    <div class="mt-3">
+                        <span class="tech-pill">ChatGPT API</span>
+                        <span class="tech-pill">PDF Gen</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="cyber-card h-100 p-4 opacity-75" style="border-style: dashed;">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="badge rounded-pill bg-warning-subtle text-warning small px-2 py-1 border border-warning">IN PROGRESS</span>
+                        <i class="bi bi-image text-secondary fs-4"></i>
+                    </div>
+                    <h5 class="text-white fw-bold">AI BG-Remover</h5>
+                    <p class="text-secondary small">Automatically remove backgrounds from images with one click. Currently tuning the AI for better edges.</p>
+                    <div class="mt-3">
+                        <span class="tech-pill">Python</span>
+                        <span class="tech-pill">CV</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="cyber-card h-100 p-4 d-flex flex-column justify-content-center align-items-center text-center border-secondary opacity-50">
+                    <div class="mb-3">
+                        <i class="bi bi-plus-circle text-secondary fs-1"></i>
+                    </div>
+                    <h6 class="text-secondary fw-bold">More Tools Coming...</h6>
+                    <p class="text-secondary smallest">I'm always building new helpers.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="text-center">
+            <a href="/tools" class="btn btn-outline-info px-5 py-3 fw-bold btn-neon">
+                EXPLORE ALL TOOLS <i class="bi bi-chevron-right ms-2"></i>
+            </a>
+            <p class="mt-3 small text-secondary">Check out the full list of available and upcoming projects.</p>
+        </div>
+
+    </div>
+</section>
+
+<style>
+    .blue-blink {
+        width: 10px; height: 10px;
+        background-color: #00d4ff;
+        border-radius: 50%;
+        animation: blink-blue 1.5s infinite;
+        box-shadow: 0 0 10px #00d4ff;
+    }
+
+    @keyframes blink-blue {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.2; }
+    }
+
+   
+</style>
+
+
+    
+
     <!-- Active Builds Section -->
     <section id="active-builds" class="py-5 border-top border-secondary" style="background:#050a15;">
         <div class="container py-5">
